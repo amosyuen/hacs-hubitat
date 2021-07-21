@@ -62,6 +62,7 @@ PLATFORMS = [
     "cover",
     "light",
     "lock",
+    "select",
     "sensor",
     "switch",
     "fan",
