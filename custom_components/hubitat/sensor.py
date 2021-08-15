@@ -46,6 +46,7 @@ from .device import HubitatEntity
 from .entities import create_and_add_entities
 from .hub import get_hub
 from .types import EntityAdder
+from .util import format_name_with_attribute
 
 _LOGGER = getLogger(__name__)
 
@@ -69,7 +70,7 @@ class HubitatSensor(HubitatEntity):
         attr_name = getattr(self, "_attribute_name", None) or self._attribute.replace(
             "_", " "
         )
-        return f"{super().name} {attr_name}"
+        return format_name_with_attribute(super().name, attr_name)
 
     @property
     def state(self) -> Union[float, int, str, None]:
@@ -211,7 +212,7 @@ class HubitatUpdateSensor(HubitatEntity):
     @property
     def name(self) -> str:
         """Return this sensor's display name."""
-        return f"{super().name} last update time"
+        return format_name_with_attribute(super().name, "last update time")
 
     @property
     def state(self) -> Union[float, int, str, None]:

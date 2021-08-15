@@ -35,6 +35,7 @@ from .entities import create_and_add_entities, create_and_add_event_emitters
 from .fan import is_fan
 from .light import is_light
 from .types import EntityAdder
+from .util import format_name_with_attribute
 
 _LOGGER = getLogger(__name__)
 
@@ -107,7 +108,7 @@ class HubitatAlarm(HubitatSwitch):
     @property
     def name(self) -> str:
         """Return this alarm's display name."""
-        return f"{super().name} alarm"
+        return format_name_with_attribute(super().name, "alarm")
 
     async def async_turn_on(self, **kwargs: Any) -> None:
         """Turn on the alarm."""

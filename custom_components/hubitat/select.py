@@ -8,6 +8,7 @@ from .const import ATTR_MODE, DEVICE_TYPE_HUB_MODE
 from .device import HubitatEntity
 from .hub import get_hub
 from .types import EntityAdder
+from .util import format_name_with_attribute
 
 
 class HubitatSelect(HubitatEntity, SelectEntity):
@@ -23,7 +24,7 @@ class HubitatSelect(HubitatEntity, SelectEntity):
     @property
     def name(self) -> str:
         """Return this select's display name."""
-        return f"{super().name} {self._attribute}"
+        return format_name_with_attribute(super().name, self._attribute)
 
     @property
     def current_option(self) -> Union[str, None]:

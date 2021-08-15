@@ -33,6 +33,7 @@ from homeassistant.core import HomeAssistant
 from .device import Hub, HubitatEntity
 from .entities import create_and_add_entities
 from .types import EntityAdder
+from .util import format_name_with_attribute
 
 _CONTACT_MATCHERS = (
     (re.compile("garage door", re.IGNORECASE), DEVICE_CLASS_GARAGE_DOOR),
@@ -57,7 +58,7 @@ class HubitatBinarySensor(HubitatEntity, BinarySensorEntity):
     @property
     def name(self) -> str:
         """Return the display name for this sensor."""
-        return f"{super().name} {self._attribute}"
+        return format_name_with_attribute(super().name, self._attribute)
 
     @property
     def old_unique_ids(self) -> List[str]:

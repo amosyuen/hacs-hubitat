@@ -31,3 +31,10 @@ def get_hub_device_id(hub: HasToken, device: Union[str, Device]) -> str:
     """Return the hub-relative ID for a device"""
     device_id = device if isinstance(device, str) else device.id
     return f"{get_token_hash(hub.token)}::{device_id}"
+
+# Format attribute to match the capitalization of name
+def format_name_with_attribute(name, attribute):
+    if len(name) > 0 and name[0].isupper():
+        # Capitalize each word in attribute
+        attribute = " ".join([s.capitalize() for s in attribute.split(" ")])
+    return f"{name} {attribute}"
